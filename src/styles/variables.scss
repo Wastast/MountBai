@@ -1,0 +1,42 @@
+$box-title: #04170f;
+.module-box {
+  background:rgba(0,0,0,1);
+  border:px2rem(1rem) solid rgba(95,189,159,1);
+  border-radius:px2rem(14rem);
+  z-index: 11;
+  padding: px2rem(8rem);
+  box-sizing: border-box;
+  .title {
+    background: $box-title;
+    border-radius: px2rem(7rem);
+    width: 100%;
+    height: px2rem(67rem);
+    >div {
+      float: left;
+    }
+    .img-box {
+      width: px2rem(67rem);
+      height: px2rem(67rem);
+    }
+    .text {
+      font-size:px2rem(20rem);
+      font-weight:bold;
+      color:#fff;
+      line-height:px2rem(67rem);
+      text-shadow:0px 0px px2rem(21rem) rgba(10,62,46,0.76);
+    }
+    .list {
+      float: right;
+      margin-top: px2rem(15rem);
+      margin-right: px2rem(18rem);
+      width: px2rem(41rem);
+      height: px2rem(41rem);
+      background: url('~@/assets/img/list.png');
+      background-size: cover;
+      cursor: pointer;
+      &:hover{
+        filter: brightness(2);
+      }
+    }
+  }
+}
