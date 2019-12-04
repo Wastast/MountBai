@@ -24,8 +24,9 @@ export function setToken(token) {
 
 // 去除权限
 export function removeToken() {
+  window.location.replace("/bzTour/loginIndex")
   // 去除token 刷新浏览器
-  store.dispatch('setKey','').then(()=>{
-    window.location.reload(true); 
-  })
+  // store.dispatch('setKey','').then(()=>{
+  //   window.location.reload(true); 
+  // })
 }

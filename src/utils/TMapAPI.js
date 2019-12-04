@@ -8,7 +8,8 @@ function TTuJing() {
     this.markerLayer = null;
     this.initLon = 800;
     this.initLat = 800;
-    this.preUrl = "http://192.168.8.185/";
+    // this.preUrl = "http://112.17.149.56:8081/";
+    this.preUrl = "";
     this.measure = null;
     this.mapYY = null;
     this.mapParamsYY = null;
@@ -17,7 +18,7 @@ function TTuJing() {
 var __map = null;
 TTuJing.prototype.InitMap = function (mapDv) {
     //this.preUrl ="http://192.168.8.185/";
-    SUtil.SetImagesLocation("/bztour/static/plugins/TJMap/Resource/Theme/StyleDefault/");
+    SUtil.SetImagesLocation(this.preUrl + "/bzTour/static/plugins/TJMap/mapJs/");
     this.mapParams = new SMapParamOption(); 
     this.mapParams.Resolutions = [1,0.5,0.25,0.125];  
     this.mapParams.TileSize = new SSize(200,200);
@@ -25,7 +26,7 @@ TTuJing.prototype.InitMap = function (mapDv) {
     this.map = new SMap(mapDv, this.mapParams);
     this.map.AddControlToMap(new SNavigation());
     this.vectorLayer = new SVectorLayer("vLayer");
-    this.tileLayer = new STileLayer("三维图",this.preUrl+"tiles/bztiles/", 'png');
+    this.tileLayer = new STileLayer("三维图",this.preUrl+"tiles/bztiles/", 'jpg');
     this.tileLayer.SetTilePathRuleFun(TTuJing.CustomUrlSw);
     this.tileLayer.SetMainLayer(true);
     this.map.AddLayer(this.tileLayer); 
@@ -89,7 +90,7 @@ TTuJing.CustomUrlSw = function (pTile) {
 var __mapYY = null;
 TTuJing.prototype.InitMapYY = function (mapDv) {
     //this.preUrl ="http://122.228.133.85:9898/";
-    SUtil.SetImagesLocation(this.preUrl + "/static/plugins/TJMap/Resource/Theme/StyleDefault/");
+    SUtil.SetImagesLocation(this.preUrl + "/bzTour/static/plugins/TJMap/mapJs/");
     this.mapParamsYY = new SMapParamOption();
     //this.mapParams.Resolutions = [1, 0.5,0.25,0.125,0.0625,0.03125];
     this.mapParamsYY.Resolutions = [2, 1, 0.5, 0.25];
@@ -100,7 +101,7 @@ TTuJing.prototype.InitMapYY = function (mapDv) {
     var nav = new SNavigation();
     nav.SetWheelEnabled(false);
     this.mapYY.AddControlToMap(nav);
-    this.tileLayer = new STileLayer("三维图", "http://60.12.184.20/airtiles/zt/", 'jpg');
+    this.tileLayer = new STileLayer("三维图",this.preUrl+"tiles/bztiles/", 'jpg');
     this.tileLayer.SetTilePathRuleFun(TTuJing.CustomUrlSwYY);
     this.tileLayer.SetMainLayer(true);
     this.mapYY.AddLayer(this.tileLayer);

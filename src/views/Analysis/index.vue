@@ -1,7 +1,6 @@
 <template>
   <div class="index">
     <div class="background">
-
     </div>
     <analysis-header></analysis-header>
     <analysis-scenic></analysis-scenic>

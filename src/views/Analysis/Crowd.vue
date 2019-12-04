@@ -3,18 +3,20 @@
     <div class="title">
       <div class="img-box"></div>
       <div class="text">游客人群画像</div>
-      <div class="list"></div>
+      <div class="list" @click="jump()"></div>
     </div>
     <div class="content">
       <div class="top-select">
         <ul class="list">
           <li
             class="item"
-            :class="type == item.type?'checked':''"
+            :class="type == item.type ? 'checked' : ''"
             v-for="item of list"
             :key="item.type"
             @click="tabEcharts(item.type)"
-          >{{item.name}}</li>
+          >
+            {{ item.name }}
+          </li>
         </ul>
       </div>
       <div class="echarts">
@@ -25,127 +27,132 @@
 </template>
 
 <script>
-import { EleResize } from "@/utils/esresize";
+import { EleResize } from '@/utils/esresize'
 export default {
-  name: "Crowd",
+  name: 'Crowd',
   data() {
     return {
       list: [
         {
-          type: "nianlin",
-          name: "年龄"
+          type: 'nianlin',
+          name: '年龄'
         },
         {
-          type: "consumption",
-          name: "消费水平"
+          type: 'consumption',
+          name: '消费水平'
         },
         {
-          type: "hobby",
-          name: "爱好"
+          type: 'hobby',
+          name: '爱好'
         },
         {
-          type: "sex",
-          name: "性别"
+          type: 'sex',
+          name: '性别'
         }
       ],
-      type: "nianlin",
-      echartsValue:{
-        'nianlin':{
-          legend: ["0-17岁", "18-25岁", "26-35岁", "36-48岁"],
+      type: 'nianlin',
+      echartsValue: {
+        nianlin: {
+          legend: ['0-17岁', '18-25岁', '26-35岁', '36-48岁'],
           data: [
-            { value: 335, name: "0-17岁" },
-            { value: 310, name: "18-25岁" },
-            { value: 234, name: "26-35岁" },
-            { value: 135, name: "36-48岁" }
+            { value: 335, name: '0-17岁' },
+            { value: 310, name: '18-25岁' },
+            { value: 234, name: '26-35岁' },
+            { value: 135, name: '36-48岁' }
           ],
           name: '年龄人群'
         },
         consumption: {
-          legend: ["0-17岁", "18-25岁", "26-35岁", "36-48岁"],
+          legend: ['0-17岁', '18-25岁', '26-35岁', '36-48岁'],
           data: [
-            { value: 335, name: "0-17岁" },
-            { value: 310, name: "18-25岁" },
-            { value: 234, name: "26-35岁" },
-            { value: 135, name: "36-48岁" }
+            { value: 335, name: '0-17岁' },
+            { value: 310, name: '18-25岁' },
+            { value: 234, name: '26-35岁' },
+            { value: 135, name: '36-48岁' }
           ],
           name: '消费水平'
         },
         hobby: {
-          legend: ["0-17岁", "18-25岁", "26-35岁", "36-48岁"],
+          legend: ['0-17岁', '18-25岁', '26-35岁', '36-48岁'],
           data: [
-            { value: 335, name: "0-17岁" },
-            { value: 310, name: "18-25岁" },
-            { value: 234, name: "26-35岁" },
-            { value: 135, name: "36-48岁" }
+            { value: 335, name: '0-17岁' },
+            { value: 310, name: '18-25岁' },
+            { value: 234, name: '26-35岁' },
+            { value: 135, name: '36-48岁' }
           ],
           name: '爱好'
         },
         sex: {
-          legend: ["0-17岁", "18-25岁", "26-35岁", "36-48岁"],
+          legend: ['0-17岁', '18-25岁', '26-35岁', '36-48岁'],
           data: [
-            { value: 335, name: "0-17岁" },
-            { value: 310, name: "18-25岁" },
-            { value: 234, name: "26-35岁" },
-            { value: 135, name: "36-48岁" }
+            { value: 335, name: '0-17岁' },
+            { value: 310, name: '18-25岁' },
+            { value: 234, name: '26-35岁' },
+            { value: 135, name: '36-48岁' }
           ],
           name: '爱好'
         }
       }
-    };
+    }
   },
   methods: {
+    // 跳转
+    jump() {
+      // window.open('http://112.17.149.56:8086/bzTour/backstage/analysisIndex?indexName=keliu')
+      window.open('/bzTour/backstage/analysisIndex?indexName=keliu')
+    },
     // 显示echarts数据
-    showEcharts (item) {
-      let {legend,data,name} = item;
-      let myChart = this.echarts.init(document.getElementById("crowd"));
-      let resizeDiv = document.getElementById("crowd");
+    showEcharts(item) {
+      let { legend, data, name } = item
+      let myChart = this.echarts.init(document.getElementById('crowd'))
+      let resizeDiv = document.getElementById('crowd')
       let listener = () => {
-        myChart.resize();
-      };
-      EleResize.on(resizeDiv, listener);
+        myChart.resize()
+      }
+      EleResize.on(resizeDiv, listener)
       let option = {
         color: [
-          "rgba(13,203,201,1)",
-          "rgba(177,95,213,1)",
-          "rgba(93,60,196,1)",
-          "rgba(79,161,119,1)"
+          'rgba(13,203,201,1)',
+          'rgba(177,95,213,1)',
+          'rgba(93,60,196,1)',
+          'rgba(79,161,119,1)'
         ],
         tooltip: {
-          trigger: "item",
-          formatter: "{a} <br/>{b}: {c} ({d}%)"
+          trigger: 'item',
+          formatter: '{a} <br/>{b}: {c} ({d}%)'
         },
         legend: {
-          orient: "vertical",
+          orient: 'vertical',
           // x: "right",
-          top: "center",
-          icon: "circle",
+          top: 'center',
+          icon: 'circle',
           right: '20%',
           textStyle: {
             color: '#fff',
             lineHeight: 30,
             fontWeight: 'bold',
-            fontSize: 16,
+            fontSize: 16
           },
           data: []
           // data: ["0-17岁", "18-25岁", "26-35岁", "36-48岁"]
         },
         series: [
           {
-            name: "年龄人群",
-            type: "pie",
-            radius: ["50%", "70%"],
-            center: ['30%','50%'],
+            name: '年龄人群',
+            type: 'pie',
+            radius: ['50%', '70%'],
+            center: ['30%', '50%'],
             avoidLabelOverlap: false,
             label: {
               normal: {
                 show: false,
-                position: "center"
+                position: 'center'
               },
               emphasis: {
                 show: true,
                 textStyle: {
-                  fontSize: "20",
-                  fontWeight: "bold"
+                  fontSize: '20',
+                  fontWeight: 'bold'
                 }
               }
             },
@@ -157,12 +164,12 @@ export default {
             data: []
           }
         ]
-      };
-      
-      option.legend.data = legend;
+      }
+
+      option.legend.data = legend
       option.series[0].name = name
       option.series[0].data = data
-      myChart.setOption(option,true);
+      myChart.setOption(option, true)
     },
     // 切换echarts数据
     tabEcharts(type) {
@@ -170,10 +177,10 @@ export default {
       this.showEcharts(this.echartsValue[this.type])
     }
   },
-  mounted () {
+  mounted() {
     this.showEcharts(this.echartsValue[this.type])
   }
-};
+}
 </script>
 
 <style scoped lang="scss">
@@ -185,7 +192,7 @@ export default {
   height: px2rem(317rem);
   .title {
     .img-box {
-      background: url("~@/assets/img/crowd.png");
+      background: url('~@/assets/img/crowd.png');
       background-size: contain;
     }
   }
@@ -204,7 +211,7 @@ export default {
         .checked {
           font-weight: bold;
           &::before {
-            content: "";
+            content: '';
             position: absolute;
             width: 100%;
             height: px2rem(4rem);
@@ -230,7 +237,7 @@ export default {
           &:hover {
             font-weight: bold;
             &::before {
-              content: "";
+              content: '';
               position: absolute;
               width: 100%;
               height: px2rem(4rem);

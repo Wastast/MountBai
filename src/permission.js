@@ -5,7 +5,8 @@ import { getToken } from '@/utils/auth' // 获取用户是否登录
 
 router.beforeEach(async(to, from, next) => {
   // 判断用户是否登录
-  const hasToken = getToken()
+  const hasToken = true
+  // const hasToken = getToken()
   if (hasToken) {
     /* 已登录 */
     if (to.path === '/login') {

@@ -3,7 +3,7 @@
     <div class="title">
       <div class="img-box"></div>
       <div class="text">自驾游统计</div>
-      <div class="list"></div>
+      <div class="list" @click="jump()"></div>
     </div>
     <div class="content">
       <div id="travelling"></div>
@@ -12,37 +12,40 @@
 </template>
 
 <script>
-import { EleResize } from "@/utils/esresize";
+import { EleResize } from '@/utils/esresize'
 export default {
-  name: "travelling",
+  name: 'travelling',
+  data() {
+    return {}
+  },
   methods: {
     // 自驾游数据统计
     statistics() {
-      let myChart = this.echarts.init(document.getElementById("travelling"));
-      let resizeDiv = document.getElementById("travelling");
+      let myChart = this.echarts.init(document.getElementById('travelling'))
+      let resizeDiv = document.getElementById('travelling')
       let listener = () => {
-        myChart.resize();
-      };
-      EleResize.on(resizeDiv, listener);
+        myChart.resize()
+      }
+      EleResize.on(resizeDiv, listener)
       let option = {
-        color:['#49adb9','#5d3cc4'],
+        color: ['#49adb9', '#5d3cc4'],
         tooltip: {
-          trigger: "axis"
+          trigger: 'axis'
         },
         legend: {
-          data: ["到返", "返程"],
+          data: ['到返', '返程'],
           textStyle: {
             color: 'rgba(255,255,255,.7)'
           },
-          icon: "circle",
+          icon: 'circle'
         },
         xAxis: [
           {
-            type: "category",
-            data: ["景点名称", "景点名称", "景点名称", "景点名称", "景点名称"],
-            axisLine:{
+            type: 'category',
+            data: ['其他区域', '溪口特色文创街区', '凉亭', '釜托寺', '天登寺'],
+            axisLine: {
               lineStyle: {
-                color: 'rgba(255,255,255,.8)',
+                color: 'rgba(255,255,255,.8)'
               }
             },
             axisTick: {
@@ -50,15 +53,16 @@ export default {
                 color: 'rgba(255,255,255,.8)'
               }
             },
+            nameRotate: 60
           }
         ],
         yAxis: [
           {
-            name: '单位: 万',
-            type: "value",
-            axisLine:{
+            name: '单位: 辆',
+            type: 'value',
+            axisLine: {
               lineStyle: {
-                color: 'rgba(255,255,255,.8)',
+                color: 'rgba(255,255,255,.8)'
               }
             },
             axisTick: {
@@ -67,7 +71,7 @@ export default {
               }
             },
             splitLine: {
-              lineStyle:{
+              lineStyle: {
                 color: '#333'
               }
             }
@@ -76,25 +80,29 @@ export default {
         series: [
           {
             barWidth: 15, //柱子宽度
-            name: "到返",
-            type: "bar",
-            data: [2.0, 4.9, 7.0, 23.2, 25.6]
+            name: '到返',
+            type: 'bar',
+            data: [140, 45, 40, 35, 30]
           },
           {
             barWidth: 15, //柱子宽度
-            name: "返程",
-            type: "bar",
-            data: [2.6, 5.9, 9.0, 26.4, 28.7]
+            name: '返程',
+            type: 'bar',
+            data: [120, 10, 20, 14, 22]
           }
         ]
-      };
-      myChart.setOption(option);
+      }
+      myChart.setOption(option)
+    },
+    // 跳转
+    jump() {
+      window.open('/bzTour/backstage/analysisIndex?indexName=keliu')
     }
   },
-  mounted () {
+  mounted() {
     this.statistics()
   }
-};
+}
 </script>
 
 <style scoped lang="scss">
@@ -106,7 +114,7 @@ export default {
   height: px2rem(302rem);
   .title {
     .img-box {
-      background: url("~@/assets/img/travelling.png");
+      background: url('~@/assets/img/travelling.png');
       background-size: contain;
     }
   }

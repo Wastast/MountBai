@@ -3,7 +3,7 @@
     <div class="title">
       <div class="img-box"></div>
       <div class="text">客流来源地Top5</div>
-      <div class="list"></div>
+      <div class="list" @click="jump()"></div>
     </div>
     <div class="content">
       <div id="flow"></div>
@@ -12,36 +12,39 @@
 </template>
 
 <script>
-import { EleResize } from "@/utils/esresize";
+import { EleResize } from '@/utils/esresize'
 export default {
-  name: "flow",
+  name: 'flow',
+  data() {
+    return {}
+  },
   methods: {
     // 客流数据
     flowValue() {
-      let myChart = this.echarts.init(document.getElementById("flow"));
-      let resizeDiv = document.getElementById("flow");
+      let myChart = this.echarts.init(document.getElementById('flow'))
+      let resizeDiv = document.getElementById('flow')
       let listener = () => {
-        myChart.resize();
-      };
-      EleResize.on(resizeDiv, listener);
+        myChart.resize()
+      }
+      EleResize.on(resizeDiv, listener)
       let option = {
         tooltip: {
-          trigger: "axis",
+          trigger: 'axis',
           axisPointer: {
             // 坐标轴指示器，坐标轴触发有效
-            type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
+            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
           }
         },
         grid: {
-          left: "3%",
-          right: "4%",
-          bottom: "3%",
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
           containLabel: true
         },
         xAxis: [
           {
-            type: "category",
-            data: ["杭州", "南京", "苏州", "武汉", "广州"],
+            type: 'category',
+            data: ['杭州', '湖州', '嘉兴', '绍兴', '其他'],
             axisTick: {
               alignWithLabel: true
             },
@@ -50,22 +53,22 @@ export default {
         ],
         yAxis: [
           {
-            type: "value",
+            type: 'value',
             show: false
           }
         ],
         series: [
           {
-            name: "客流量",
-            type: "bar",
-            barWidth: "60%",
-            data: [10, 52, 200, 334, 390],
+            name: '客流量',
+            type: 'bar',
+            barWidth: '60%',
+            data: [153, 66, 31, 29, 15],
             label: {
               normal: {
                 show: true,
-                position: "top",
+                position: 'top',
                 textStyle: {
-                  color: "#fff"
+                  color: '#fff'
                 }
               }
             },
@@ -74,34 +77,30 @@ export default {
                 color: new this.echarts.graphic.LinearGradient(0, 0, 0, 1, [
                   {
                     offset: 0,
-                    color: "#ba7ef3"
+                    color: '#ba7ef3'
                   },
                   {
                     offset: 1,
-                    color: "#965df2"
+                    color: '#965df2'
                   }
                 ])
               }
             }
           }
-        ],
-        // label: {
-        //   normal: {
-        //     show: true,
-        //     position: "top",
-        //     textStyle: {
-        //       color: "black"
-        //     }
-        //   }
-        // }
-      };
-      myChart.setOption(option, true);
+        ]
+      }
+      myChart.setOption(option, true)
+    },
+    // 跳转
+    jump() {
+      // window.open('http://112.17.149.56:8086/bzTour/backstage/analysisIndex?indexName=keliu')
+      window.open('/bzTour/backstage/analysisIndex?indexName=keliu')
     }
   },
   mounted() {
-    this.flowValue();
+    this.flowValue()
   }
-};
+}
 </script>
 
 <style scoped lang="scss">
@@ -113,7 +112,7 @@ export default {
   height: px2rem(250rem);
   .title {
     .img-box {
-      background: url("~@/assets/img/flow.png");
+      background: url('~@/assets/img/flow.png');
       background-size: contain;
     }
   }

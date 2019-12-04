@@ -1,38 +1,30 @@
 <template>
   <div class="Scenic module-box">
     <div class="title">
-      <div class="img-box">
-
-      </div>
+      <div class="img-box"></div>
       <div class="text">
         景区客流实时排行TOP5
       </div>
-      <div class="list">
-
-      </div>
+      <div class="list" @click="jump()"></div>
     </div>
     <div class="content">
       <ul class="list">
-        <li class="item"
-          v-for="(item,index) of list" :key="index"
-          > 
+        <li class="item" v-for="(item, index) of list" :key="index">
           <div class="paiming">
             <div :class="ranking[index]"></div>
           </div>
           <div class="line">
             <dl>
               <dt>
-                {{item.name}}
+                {{ item.name }}
               </dt>
               <dd>
-                <div :style="{width: (item.value / list[0].value)*100 + '%'}">
-
-                </div>
+                <div :style="{ width: (item.value / list[0].value) * 100 + '%' }"></div>
               </dd>
             </dl>
           </div>
           <div class="value">
-            {{item.value}}
+            {{ item.value }}
           </div>
         </li>
       </ul>
@@ -43,27 +35,39 @@
 <script>
 export default {
   name: 'Scenic',
-  data () {
+  data() {
     return {
-      ranking:['one','two','there','four','fire'],
-      list:[{
-        name: '釜托寺',
-        value: '834'
-      },{
-        name: '独松关',
-        value: '734'
-      },{
-        name: '牙山战马顶',
-        value: '634'
-      },{
-        name: '平天堂',
-        value: '534'
-      },{
-        name: '杭宣古道',
-        value: '434'
-      }]
+      ranking: ['one', 'two', 'there', 'four', 'fire'],
+      list: [
+        {
+          name: '其他区域',
+          value: '140'
+        },
+        {
+          name: '溪口特色文创街区',
+          value: '45'
+        },
+        {
+          name: '凉亭',
+          value: '40'
+        },
+        {
+          name: '釜托寺',
+          value: '35'
+        },
+        {
+          name: '天登寺',
+          value: '30'
+        }
+      ]
     }
   },
+  methods: {
+    // 跳转
+    jump() {
+      window.open('/bzTour/backstage/analysisIndex?indexName=keliu')
+    }
+  }
 }
 </script>
 
@@ -127,7 +131,7 @@ export default {
           display: flow-root;
           dt {
             font-size: px2rem(16rem);
-            font-weight:bold;
+            font-weight: bold;
           }
           dd {
             width: px2rem(410rem);
@@ -138,7 +142,7 @@ export default {
               height: 100%;
               transition: 1s;
               border-radius: 50px;
-              background:linear-gradient(90deg,rgba(26,150,99,1),rgba(97,222,211,1));
+              background: linear-gradient(90deg, rgba(26, 150, 99, 1), rgba(97, 222, 211, 1));
             }
           }
         }

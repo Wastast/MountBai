@@ -9,11 +9,15 @@
     </div>
     <div class="right">
       <router-link tag="div" to="/control" class="tuichu ellipsis">
-        <img src="@/assets/img/control.png">
+        <!-- <img src="@/assets/img/control.png"> -->
         综合管控
       </router-link>
+      <div class="tuichu ellipsis" @click="jump()">
+        <!-- <img src="@/assets/img/out.png" /> -->
+        景区设备管理
+      </div>
       <div class="tuichu ellipsis" @click="out()">
-        <img src="@/assets/img/out.png">
+        <!-- <img src="@/assets/img/out.png"> -->
         退出
       </div>
     </div>
@@ -28,7 +32,11 @@ export default {
     // 退出登录
     out () {
       removeToken()
-    }
+    },
+    // 跳转到其他页面
+    jump() {
+      window.location.replace("http://localhost:8888/dual/")
+    },
   },
 }
 </script>
@@ -75,7 +83,9 @@ export default {
       cursor: pointer;
       > div {
         float: left;
-        width: px2rem(150rem);
+        // width: px2rem(100rem);
+        width: px2rem(110rem);
+        // width: px2rem(150rem);
         height: px2rem(70rem);
         line-height: px2rem(70rem);
         margin-left: px2rem(11rem);
@@ -84,6 +94,7 @@ export default {
         border:1px solid rgba(17,79,61,1);
         background:linear-gradient(0deg,rgba(3,38,24,1) 0%,rgba(0,0,0,1) 100%);
         border-radius: px2rem(17rem);
+        text-align: center;
         img {
           width: px2rem(38rem);
           height: px2rem(38rem);

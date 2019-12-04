@@ -3,7 +3,7 @@
     <div class="title">
       <div class="img-box"></div>
       <div class="text">卡口分析</div>
-      <div class="list"></div>
+      <div class="list" @click="jump()"></div>
     </div>
     <div class="content">
       <div class="top-select">
@@ -40,6 +40,10 @@ export default {
     };
   },
   methods: {
+    // 跳转
+    jump() {
+      window.open('/bzTour/backstage/passengerSource?indexName=keliu')
+    },
     // echarts数据
     echartsValue() {
       let myChart = this.echarts.init(document.getElementById("kakou"));
@@ -77,8 +81,8 @@ export default {
             radius: ["40%", "55%"],
             center: ['30%','50%'],
             data: [
-              { value: 335, name: "市内" },
-              { value: 310, name: "市外" }
+              { value: 75, name: "市内" },
+              { value: 25, name: "市外" }
             ],
             label: {
               normal: {
@@ -105,8 +109,8 @@ export default {
               }
             },
             data: [
-              { value: 679, name: "省内" },
-              { value: 1548, name: "省外" }
+              { value: 66, name: "省内" },
+              { value: 34, name: "省外" }
             ]
           }
         ]

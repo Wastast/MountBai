@@ -1,16 +1,14 @@
 <template>
   <div class="park module-box">
     <div class="title">
-      <div class="img-box">
-      </div>
+      <div class="img-box"></div>
       <div class="text">
         停车场分析
       </div>
-      <div class="list">
-      </div>
+      <div class="list" @click="jump()"></div>
     </div>
     <div class="content">
-      <div class='top'>
+      <div class="top">
         <span class="name">
           停车场名称
         </span>
@@ -25,25 +23,21 @@
         </span>
       </div>
       <ul class="list">
-        <li 
-          class="item"
-          v-for="(item,index) of list" :key="index"
-          >
+        <li class="item" v-for="(item, index) of list" :key="index">
           <div class="d-name ellipsis">
-            {{item.name}}
+            {{ item.name }}
           </div>
           <div class="d-shiyong ellipsis">
-            {{item.shiyong}}
+            {{ item.shiyong }}
           </div>
           <div class="d-yijing ellipsis">
-            {{item.weishiyong}}
+            {{ item.weishiyong }}
           </div>
           <div class="d-baifen">
-            <div class="line" :style="{width: item.baifenbi,background: item.color}">
-            </div>
+            <div class="line" :style="{ width: item.baifenbi, background: item.color }"></div>
           </div>
           <div class="d-baifenbi">
-            {{item.baifenbi}}
+            {{ item.baifenbi }}
           </div>
         </li>
       </ul>
@@ -54,29 +48,40 @@
 <script>
 export default {
   name: 'park',
-  data () {
+  data() {
     return {
-      list: [{
-        name: '停车场名称',
-        shiyong: 280,
-        weishiyong: 0,
-        baifenbi: '100%',
-        color: 'rgba(200,51,27,1)'
-      },{
-        name: '停车场名称',
-        shiyong: 12,
-        weishiyong: 120,
-        baifenbi: '70%',
-        color: 'rgba(200,96,27,1)'
-      },{
-        name: '停车场名称',
-        shiyong: 12,
-        weishiyong: 120,
-        baifenbi: '50%',
-        color: 'rgba(73,173,185,1)'
-      }]
+      list: [
+        {
+          name: '停车场名称',
+          shiyong: 224,
+          weishiyong: 56,
+          baifenbi: '80%',
+          color: 'rgba(200,51,27,1)'
+        },
+        {
+          name: '停车场名称',
+          shiyong: 12,
+          weishiyong: 120,
+          baifenbi: '70%',
+          color: 'rgba(200,96,27,1)'
+        },
+        {
+          name: '停车场名称',
+          shiyong: 12,
+          weishiyong: 120,
+          baifenbi: '50%',
+          color: 'rgba(73,173,185,1)'
+        }
+      ]
     }
   },
+  methods: {
+    // 跳转
+    jump() {
+      // window.open('http://112.17.149.56:8086/bzTour/backstage/analysisIndex?indexName=keliu')
+      window.open('/bzTour/backstage/ticketingDetailsIframe?indexName=keliu')
+    }
+  }
 }
 </script>
 
@@ -97,12 +102,12 @@ export default {
     display: flow-root;
     padding: 0 px2rem(14rem);
     .top {
-      color: rgba(48,197,143,1);
+      color: rgba(48, 197, 143, 1);
       height: px2rem(42rem);
       line-height: px2rem(42rem);
       position: relative;
       font-weight: bold;
-      border-bottom: 1px solid rgba(128,130,135,.7);
+      border-bottom: 1px solid rgba(128, 130, 135, 0.7);
       > span {
         position: absolute;
       }
@@ -126,7 +131,7 @@ export default {
         display: flow-root;
         position: relative;
         height: px2rem(44rem);
-        >div {
+        > div {
           text-align: center;
           float: left;
           height: px2rem(44rem);
@@ -134,7 +139,7 @@ export default {
           position: absolute;
         }
         &:not(:last-child) {
-          border-bottom: 1px solid rgba(128,130,135,.2);
+          border-bottom: 1px solid rgba(128, 130, 135, 0.2);
         }
         .d-name {
           left: px2rem(12rem);
